@@ -61,9 +61,8 @@ prompt = """You are a helpful assistant. IMPORTANT RULES:
 
 
 **CSL-Core Approach**:
-```python
 # 1. Define policy (my_policy.csl)
-"""
+```python
 CONFIG {
   ENFORCEMENT_MODE: BLOCK
   CHECK_LOGICAL_CONSISTENCY: TRUE
@@ -78,18 +77,20 @@ DOMAIN AgentGuard {
     THEN amount <= 1000
   }
 }
-"""
+```
 
 # 2. Load and enforce (3 lines)
+```python
 guard = load_guard("my_policy.csl")
 safe_tools = guard_tools(tools, guard, inject={"user_tier": "JUNIOR"})
 agent = create_openai_tools_agent(llm, safe_tools, prompt)
+```
 
 # 3. Sleep well
-# - Mathematically proven consistent (Z3)
-# - LLM cannot bypass (enforcement is external)
-# - Every violation logged with constraint name
-```
+- Mathematically proven consistent (Z3)
+- LLM cannot bypass (enforcement is external)
+- Every violation logged with constraint name
+
 
 ---
 
@@ -228,7 +229,7 @@ except ChimeraError as e:
     print(f"Blocked: {e}")
 ```
 
-### Use in Code (LangChain) — **3 Lines of Code**
+### Use in Code (LangChain)
 
 ```python
 from chimera_core import load_guard
@@ -325,28 +326,28 @@ CSL-Core separates **Policy Definition** from **Runtime Enforcement** through a 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                     1. COMPILER (compiler.py)                    │
-│  .csl file → AST → Intermediate Representation (IR) → Artifact  │
-│  • Syntax validation                                             │
-│  • Semantic validation                                           │
-│  • Optimized functor generation                                  │
+│                     1. COMPILER (compiler.py)                   │
+│  .csl file → AST → Intermediate Representation (IR) → Artifact   │
+│  • Syntax validation                                            │
+│  • Semantic validation                                          │
+│  • Optimized functor generation                                 │
 └─────────────────────────────────────────────────────────────────┘
                                 ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│                    2. VERIFIER (verifier.py)                     │
-│              Z3 Theorem Prover - Static Analysis                 │
-│  • Reachability analysis                                         │
-│  • Contradiction detection                                       │
-│  • Rule shadowing detection                                      │
+│                    2. VERIFIER (verifier.py)                    │
+│              Z3 Theorem Prover - Static Analysis                │
+│  • Reachability analysis                                        │
+│  • Contradiction detection                                      │
+│  • Rule shadowing detection                                     │
 │  ✅ If verification fails → Policy WILL NOT compile             │
 └─────────────────────────────────────────────────────────────────┘
                                 ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│                    3. RUNTIME GUARD (runtime.py)                 │
-│                 Deterministic Policy Enforcement                 │
-│  • Fail-closed evaluation                                        │
-│  • Zero dependencies (pure Python functors)                      │
-│  • Audit trail generation                                        │
+│                    3. RUNTIME GUARD (runtime.py)                │
+│                 Deterministic Policy Enforcement                │
+│  • Fail-closed evaluation                                       │
+│  • Zero dependencies (pure Python functors)                     │
+│  • Audit trail generation                                       │
 │  • <1ms latency for typical policies                            │
 └─────────────────────────────────────────────────────────────────┘
 ```
