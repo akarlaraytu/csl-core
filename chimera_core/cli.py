@@ -147,6 +147,16 @@ def _print_kv_table(title: str, rows: List[List[str]]):
         t.add_row(k, v)
     console.print(t)
 
+def _print_star_footer():
+    console.print()
+    console.print(
+        "✨ If you find CSL useful, please consider starring us on GitHub:\n"
+        "[link=https://github.com/chimera-protocol/csl-core]https://github.com/chimera-protocol/csl-core[/link]",
+        justify="center",
+        style="dim"
+    )
+    console.print()
+
 def _result_to_json(result: Any, *, context: Dict[str, Any], compiled: Any) -> Dict[str, Any]:
     """
     Best-effort serializer for runtime verification outputs.
@@ -267,6 +277,7 @@ def cmd_verify(args: argparse.Namespace) -> int:
         _print_kv_table("Compiled Policy Metadata", rows)
 
     _print_success("Verification passed", "No logical contradictions found (given CSL-Core analysis scope).")
+    _print_star_footer()
     return 0
 
 
@@ -414,6 +425,8 @@ def cmd_simulate(args: argparse.Namespace) -> int:
                 ["Dry-run", str(bool(args.dry_run))],
             ],
         )
+        if not (bool(getattr(args, "json", False)) or bool(getattr(args, "json_out", None))):
+             _print_star_footer()
     return 0 if blocked == 0 or args.dry_run else 10
 
 

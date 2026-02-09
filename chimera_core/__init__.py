@@ -1,14 +1,14 @@
 """
 CSL-Core (Chimera Core)
 
-Probabilistic models için deterministic güvenlik katmanı:
+Deterministic safety layer for probabilistic models:
 - Compile-time: parse -> validate -> Z3 verify -> compile to IR
 - Runtime: deterministic guard enforcement (no Z3)
 """
 
 from __future__ import annotations
 
-__version__ = "0.1.0a0"
+__version__ = "0.2.0a1"
 
 # --- 1. Core Runtime (Lightweight) ---
 from .runtime import ChimeraGuard, ChimeraError, GuardResult, RuntimeConfig

@@ -10,7 +10,7 @@
 [![Open-Core](https://img.shields.io/badge/Model-Open--Core-orange.svg)](https://en.wikipedia.org/wiki/Open-core_model)
 
 
-`Alpha (0.1.x). Interfaces may change. Use in production only with thorough testing.`
+`Alpha (0.2.x). Interfaces may change. Use in production only with thorough testing.`
 
 **CSL-Core** (Chimera Specification Language) is an open-source policy language and runtime that brings **mathematical rigor** to AI agent governance. Define rigid, formally verified "laws" for your AI systems and enforce them at runtime with deterministic guarantees; completely independent of prompts, fine-tuning, or model training.
 
