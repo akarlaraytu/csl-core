@@ -45,6 +45,74 @@ Instead of relying on "please don't do that" prompts, CSL enforces:
 
 > ⚠️ **Alpha (0.2.x).** Interfaces may change. Use in production only with thorough testing.
 
+## 🚀 Quick Start (60 Seconds)
+
+
+### Write Your First Policy
+
+Create `my_policy.csl`:
+
+```js
+CONFIG {
+  ENFORCEMENT_MODE: BLOCK
+  CHECK_LOGICAL_CONSISTENCY: TRUE
+}
+
+DOMAIN MyGuard {
+  VARIABLES {
+    action: {"READ", "WRITE", "DELETE"}
+    user_level: 0..5
+  }
+
+  STATE_CONSTRAINT strict_delete {
+    WHEN action == "DELETE"
+    THEN user_level >= 4
+  }
+}
+```
+
+### Test It (No Code Required!)
+
+CSL-Core provides a **powerful CLI** for testing policies without writing any Python code:
+
+```bash
+# 1. Verify policy (syntax + Z3 formal verification)
+cslcore verify my_policy.csl
+
+# 2. Test with single input
+cslcore simulate my_policy.csl --input '{"action": "DELETE", "user_level": 2}'
+
+# 3. Interactive REPL for rapid testing
+cslcore repl my_policy.csl
+
+> {"action": "DELETE", "user_level": 2}
+allowed=False violations=1 warnings=0
+
+> {"action": "DELETE", "user_level": 5}
+allowed=True violations=0 warnings=0
+```
+
+### Use in Code (Python)
+
+```python
+from chimera_core import load_guard
+
+# Factory method - handles parsing, compilation, and Z3 verification
+guard = load_guard("my_policy.csl")
+
+# This will pass
+result = guard.verify({"action": "READ", "user_level": 1})
+print(result.allowed)  # True
+
+# This will be blocked
+try:
+    guard.verify({"action": "DELETE", "user_level": 2})
+except ChimeraError as e:
+    print(f"Blocked: {e}")
+```
+
+---
+
 ## 📖 Table of Contents
 
 - [Why CSL-Core?](#-why-csl-core)
