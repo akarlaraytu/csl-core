@@ -1,6 +1,6 @@
 # CSL-Core
 
-> **"Solidity for AI Policies"** — Deterministic safety for probabilistic AI systems
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=5319E7&width=600&lines=Solidity+for+AI+Policies;Deterministic+Safety+for+Agents;Neuro-Symbolic+Governance)](https://git.io/typing-svg)
 
 [![PyPI version](https://img.shields.io/pypi/v/csl-core?color=blue)](https://pypi.org/project/csl-core/)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/csl-core?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/csl-core)
@@ -10,9 +10,40 @@
 [![Open-Core](https://img.shields.io/badge/Model-Open--Core-orange.svg)](https://en.wikipedia.org/wiki/Open-core_model)
 
 
-`Alpha (0.2.x). Interfaces may change. Use in production only with thorough testing.`
+<table>
+  <tr>
+    <td width="40%" valign="top">
+      <h3>🚀 Get Started</h3>
+      <br/>
+      <code>pip install csl-core</code>
+      <br/><br/>
+      <i>Install the standalone compiler & runtime via PyPI.</i>
+    </td>
+    <td width="60%" valign="top">
+      <h3>🌐 From Project Chimera to Everyone</h3>
+      <p>
+        CSL is the foundational governance engine originally built for 
+        <a href="https://github.com/Chimera-Protocol/Project-Chimera"><b>Project Chimera</b></a>, 
+        our flagship <b>Neuro-Symbolic Agent</b>.
+      </p>
+      <p>
+        It is now <b>open-source for you</b> to build verifiable, auditable, and constraint-enforced safety layers for <i>any</i> AI system.
+      </p>
+    </td>
+  </tr>
+</table>
+<br/>
 
-**CSL-Core** (Chimera Specification Language) is an open-source policy language and runtime that brings **mathematical rigor** to AI agent governance. Define rigid, formally verified "laws" for your AI systems and enforce them at runtime with deterministic guarantees; completely independent of prompts, fine-tuning, or model training.
+**CSL-Core** (Chimera Specification Language) brings **mathematical rigor** to AI agent governance.
+
+Instead of relying on "please don't do that" prompts, CSL enforces:
+
+- 🛡️ **Deterministic Safety:** Rules are enforced by a runtime engine, not the LLM itself.
+- 📐 **Formally Verified:** Policies are compiled into Z3 constraints to mathematically prove they have no loopholes.
+- 🔌 **Model Agnostic:** Works with OpenAI, Anthropic, Llama, or custom agents. Independent of training data.
+- ⚖️ **Auditable & Verifiable:** Every decision generates a proof of compliance. Allows **third-party auditing** of AI behavior without exposing model weights or proprietary data.
+
+> ⚠️ **Alpha (0.2.x).** Interfaces may change. Use in production only with thorough testing.
 
 ## 📖 Table of Contents
 
