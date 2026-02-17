@@ -42,10 +42,13 @@ mcp = FastMCP("csl-core")
 # Helpers
 # ---------------------------------------------------------------------------
 
-# Resolve project root → examples/ and quickstart/ live there
-_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent  # chimera_core/mcp/server.py → csl-core/
-_EXAMPLES_DIR = _PROJECT_ROOT / "examples"
-_QUICKSTART_DIR = _PROJECT_ROOT / "quickstart"
+# Package-bundled examples (works from PyPI install)
+_PACKAGE_EXAMPLES = Path(__file__).resolve().parent / "examples"
+
+# Project root examples (works in dev mode)
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+_REPO_EXAMPLES = _PROJECT_ROOT / "examples"
+_REPO_QUICKSTART = _PROJECT_ROOT / "quickstart"
 
 
 def _compile_silent(csl_content: str):
@@ -241,26 +244,36 @@ def _explain_ast(ast) -> str:
 
 def _load_example_file(name: str) -> str:
     """
-    Try to load a .csl example from examples/ or quickstart/ directories.
+    Load a .csl example. Priority:
+    1. Package-bundled (chimera_core/mcp/examples/) — works from PyPI
+    2. Repo examples/ and quickstart/ — works in dev mode
     """
-    # Try examples/ first
-    for directory in [_EXAMPLES_DIR, _QUICKSTART_DIR]:
+    # 1. Package-bundled (always available after install)
+    bundled = _PACKAGE_EXAMPLES / f"{name}.csl"
+    if bundled.exists():
+        return bundled.read_text(encoding="utf-8")
+
+    # 2. Repo directories (dev mode fallback)
+    for directory in [_REPO_EXAMPLES, _REPO_QUICKSTART]:
         filepath = directory / f"{name}.csl"
         if filepath.exists():
             return filepath.read_text(encoding="utf-8")
-    
-    # Try with number prefix (quickstart uses 01_hello_world.csl format)
-    if _QUICKSTART_DIR.exists():
-        for f in _QUICKSTART_DIR.iterdir():
+
+    # 3. Fuzzy match in quickstart (01_hello_world.csl format)
+    if _REPO_QUICKSTART.exists():
+        for f in _REPO_QUICKSTART.iterdir():
             if f.suffix == ".csl" and name in f.stem:
                 return f.read_text(encoding="utf-8")
 
+    # Not found — list available
     available = []
-    for directory in [_EXAMPLES_DIR, _QUICKSTART_DIR]:
+    if _PACKAGE_EXAMPLES.exists():
+        available.extend(f.stem for f in _PACKAGE_EXAMPLES.iterdir() if f.suffix == ".csl")
+    for directory in [_REPO_EXAMPLES, _REPO_QUICKSTART]:
         if directory.exists():
             available.extend(f.stem for f in directory.iterdir() if f.suffix == ".csl")
-    
-    return f"Example '{name}' not found. Available: {', '.join(sorted(available))}"
+
+    return f"Example '{name}' not found. Available: {', '.join(sorted(set(available)))}"
 
 
 # ---------------------------------------------------------------------------
@@ -530,7 +543,7 @@ def example_age_verification() -> str:
 @mcp.resource("policy://examples/banking_guard")
 def example_banking_guard() -> str:
     """Banking transfer guard — tiered limits, sanctions, risk scoring."""
-    return _load_example_file("chimera_banking_case_study")
+    return _load_example_file("banking_guard")
 
 
 @mcp.resource("policy://examples/agent_tool_guard")
