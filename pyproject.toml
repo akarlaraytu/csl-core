@@ -52,6 +52,8 @@ dev = [
     "pydantic>=2.0.0",
 ]
 
+mcp = ["mcp[cli]>=1.2.0"]
+
 # LİNKLERİNİ GÜNCELLE
 [project.urls]
 Homepage = "https://github.com/akarlaraytu/csl-core"
@@ -61,6 +63,7 @@ Issues = "https://github.com/akarlaraytu/csl-core/issues"
 
 [project.scripts]
 cslcore = "chimera_core.cli:main"
+csl-core-mcp = "chimera_core.mcp.server:main"
 
 # --- SETUPTOOLS CONFIGURATION ---
 
