@@ -126,6 +126,7 @@ except ChimeraError as e:
 - [Architecture](#️-architecture-the-3-stage-pipeline)
 - [Documentation](#-documentation)
 - [CLI Tools](#️-cli-tools--the-power-of-no-code-policy-development)
+- [MCP Server (Claude Desktop / Cursor)](#-mcp-server-claude-desktop--cursor--vs-code)
 - [LangChain Integration](#-langchain-integration-deep-dive)
 - [API Quick Reference](#-api-quick-reference)
 - [Testing](#-testing)
@@ -1052,6 +1053,47 @@ See [**CLI Reference**](docs/cli-reference.md) for complete documentation.
 
 ---
 
+## 🔌 MCP Server (Claude Desktop / Cursor / VS Code)
+
+CSL-Core includes a built-in [Model Context Protocol](https://modelcontextprotocol.io) server. Write, verify, and enforce safety policies directly from your AI assistant — no code required.
+
+### Setup
+
+Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+```json
+{
+  "mcpServers": {
+    "csl-core": {
+      "command": "uv",
+      "args": ["run", "--with", "csl-core[mcp]", "csl-core-mcp"]
+    }
+  }
+}
+```
+
+Restart Claude Desktop. The 🔌 icon confirms the connection.
+
+### Available Tools
+
+| Tool | What It Does |
+|---|---|
+| `verify_policy` | Z3 formal verification — catches contradictions at compile time |
+| `simulate_policy` | Test policies against JSON inputs — returns ALLOWED/BLOCKED |
+| `explain_policy` | Human-readable summary of any CSL policy |
+| `scaffold_policy` | Generate a CSL template from plain-English description |
+
+### Example Conversation
+
+> **You:** "Write me a safety policy that prevents my AI agent from making transfers over $5000 without admin approval"
+>
+> **Claude:** *uses scaffold_policy → you edit → verify_policy catches a contradiction → you fix → simulate_policy confirms it works*
+
+### Install with MCP support
+```bash
+pip install "csl-core[mcp]"
+```
+
+---
 ## 🎯 Use Cases
 
 CSL-Core is ready for:
@@ -1102,6 +1144,7 @@ CSL-Core is ready for:
 - [x] Rich terminal visualization
 - [x] Comprehensive test suite
 - [x] Custom context mappers for framework integration
+- [x] MCP Server (Claude Desktop, Cursor, VS Code integration)
 
 ### 🚧 In Progress
 - [ ] Policy versioning & migration tools
