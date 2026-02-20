@@ -4,7 +4,7 @@
 ║  Generates publication-quality charts                                ║
 ║                                                                      ║
 ║  Usage: python benchmark_visualizer.py                               ║
-║  Input: benchmark_v5_results.json, benchmark_v5_call_log.json        ║
+║  Input: benchmark_results.json, benchmark_call_log.json        ║
 ║  Output: 10 PNG charts in ./charts/                                  ║
 ╚══════════════════════════════════════════════════════════════════════╝
 """
@@ -53,9 +53,9 @@ ACCENT = '#f97316'
 os.makedirs('charts', exist_ok=True)
 
 # ── Load Data ──
-with open('benchmark_v5_results.json') as f:
+with open('benchmark_results.json') as f:
     R = json.load(f)
-with open('benchmark_v5_call_log.json') as f:
+with open('benchmark_call_log.json') as f:
     LOG = json.load(f)
 
 MODELS = ['GPT-4.1', 'GPT-4o', 'Claude Sonnet 4', 'Gemini 2.0 Flash']

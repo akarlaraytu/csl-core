@@ -26,7 +26,7 @@ dependencies = [
 ]
 
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
@@ -56,10 +56,10 @@ mcp = ["mcp[cli]>=1.2.0"]
 
 # LİNKLERİNİ GÜNCELLE
 [project.urls]
-Homepage = "https://github.com/akarlaraytu/csl-core"
-Documentation = "https://github.com/akarlaraytu/csl-core/tree/main/docs"
-Repository = "https://github.com/akarlaraytu/csl-core"
-Issues = "https://github.com/akarlaraytu/csl-core/issues"
+Homepage = "https://github.com/Chimera-Protocol/csl-core"
+Documentation = "https://github.com/Chimera-Protocol/csl-core/tree/main/docs"
+Repository = "https://github.com/Chimera-Protocol/csl-core"
+Issues = "https://github.com/Chimera-Protocol/csl-core/issues"
 
 [project.scripts]
 cslcore = "chimera_core.cli:main"

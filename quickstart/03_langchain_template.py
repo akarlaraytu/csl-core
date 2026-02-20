@@ -16,7 +16,7 @@ from pathlib import Path
 # --- [PLACEHOLDER] LANGCHAIN IMPORTS ---
 # (Uncomment these lines in your actual project)
 # from langchain_openai import ChatOpenAI
-# from langchain.agents import create_openai_tools_agent, AgentExecutor
+# from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
 # from langchain_core.tools import tool
 
 # ==============================================================================
