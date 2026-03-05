@@ -1,0 +1,25 @@
+{
+  "name": "csl",
+  "displayName": "Chimera Specification Language",
+  "description": "Syntax highlighting for Chimera Specification Language (CSL)",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "csl",
+      "aliases": ["Chimera Specification Language", "csl"],
+      "extensions": [".csl"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "csl",
+      "scopeName": "source.csl",
+      "path": "./syntaxes/csl.tmLanguage.json"
+    }]
+  }
+}

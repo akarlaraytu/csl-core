@@ -1,0 +1,183 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Chimera Specification Language",
+  "scopeName": "source.csl",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#booleans" },
+    { "include": "#blockKeywords" },
+    { "include": "#temporalKeywords" },
+    { "include": "#modalKeywords" },
+    { "include": "#logicalKeywords" },
+    { "include": "#types" },
+    { "include": "#builtinFunctions" },
+    { "include": "#configKeys" },
+    { "include": "#configValues" },
+    { "include": "#operators" },
+    { "include": "#braces" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.csl",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.csl",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.csl",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.csl",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.range.csl",
+          "match": "\\b-?\\d+(?:\\.\\d+)?\\s*\\.\\.\\s*-?\\d+(?:\\.\\d+)?\\b"
+        },
+        {
+          "name": "constant.numeric.float.csl",
+          "match": "\\b-?\\d+\\.\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.csl",
+          "match": "\\b-?\\d+\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.csl",
+          "match": "\\b(?:TRUE|FALSE|True|False|true|false)\\b"
+        }
+      ]
+    },
+    "blockKeywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.structure.csl",
+          "match": "\\b(?:CONFIG|DOMAIN|VARIABLES|STATE_CONSTRAINT)\\b"
+        }
+      ]
+    },
+    "temporalKeywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.temporal.csl",
+          "match": "\\b(?:WHEN|ALWAYS|BEFORE|AFTER|EVENTUALLY)\\b"
+        }
+      ]
+    },
+    "modalKeywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.modal.csl",
+          "match": "\\b(?:THEN|MUST|MAY|NOT|BE)\\b"
+        }
+      ]
+    },
+    "logicalKeywords": {
+      "patterns": [
+        {
+          "name": "keyword.operator.logical.csl",
+          "match": "\\b(?:AND|OR)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.primitive.csl",
+          "match": "\\b(?:Int|Nat|BOOLEAN|String)\\b"
+        }
+      ]
+    },
+    "builtinFunctions": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.csl",
+          "match": "\\b(?:len|max|min|abs)\\s*(?=\\()"
+        }
+      ]
+    },
+    "configKeys": {
+      "patterns": [
+        {
+          "name": "support.type.property-name.csl",
+          "match": "\\b(?:ENFORCEMENT_MODE|CHECK_LOGICAL_CONSISTENCY|ENABLE_FORMAL_VERIFICATION|ENABLE_CAUSAL_INFERENCE|INTEGRATION)\\b"
+        }
+      ]
+    },
+    "configValues": {
+      "patterns": [
+        {
+          "name": "constant.language.mode.csl",
+          "match": "\\b(?:BLOCK|WARN|LOG)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.csl",
+          "match": "==|!=|<=|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.arithmetic.csl",
+          "match": "\\+|-|\\*|/|%"
+        },
+        {
+          "name": "keyword.operator.range.csl",
+          "match": "\\.\\."
+        }
+      ]
+    },
+    "braces": {
+      "patterns": [
+        {
+          "name": "punctuation.section.block.begin.csl",
+          "match": "\\{"
+        },
+        {
+          "name": "punctuation.section.block.end.csl",
+          "match": "\\}"
+        },
+        {
+          "name": "punctuation.section.group.begin.csl",
+          "match": "\\("
+        },
+        {
+          "name": "punctuation.section.group.end.csl",
+          "match": "\\)"
+        },
+        {
+          "name": "punctuation.separator.key-value.csl",
+          "match": ":"
+        },
+        {
+          "name": "punctuation.separator.sequence.csl",
+          "match": ","
+        }
+      ]
+    }
+  }
+}

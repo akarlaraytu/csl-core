@@ -1,0 +1,7 @@
+// CSL Example
+DOMAIN AgentToolGuard {
+  STATE_CONSTRAINT non_admin_no_transfer {
+    WHEN user_role == "USER" OR user_role == "ANALYST"
+    THEN tool MUST NOT BE "TRANSFER_FUNDS"
+  }
+}
