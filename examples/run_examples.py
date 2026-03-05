@@ -66,6 +66,11 @@ POLICIES = {
         "path": "integrations/langchain_agent_demo.py",
         "description": "Interactive LangChain Agent with visual dashboard"
     },
+    "llamaindex_agent_demo": {
+        "type": "script",
+        "path": "integrations/llamaindex_agent_demo.py",
+        "description": "LlamaIndex FunctionTool demo with ChimeraGuard enforcement"
+    },
     "openclaw_guard": {
         "policy": "openclaw_guard.csl",
         "tests": "openclaw_guard_tests.json",
@@ -352,14 +357,22 @@ def run_integration_script(name: str) -> bool:
 def list_available_policies():
     """List all available policies"""
     console.print("\n[bold cyan]Available Policies:[/bold cyan]\n")
-    
+
     for name, info in POLICIES.items():
+        if info.get("type") == "script":
+            script_path = EXAMPLES_DIR / info["path"]
+            status = "[green]OK[/green]" if script_path.exists() else "[red]NO[/red]"
+            console.print(f"  {status} [cyan]{name}[/cyan]")
+            console.print(f"     {info['description']}")
+            console.print(f"     Script: {info['path']}")
+            console.print()
+            continue
+
         policy_path = EXAMPLES_DIR / info["policy"]
         test_path = JSON_DIR / info["tests"]
-        
-        status = "✅" if policy_path.exists() else "❌"
-        test_status = "✅" if test_path.exists() else "❌"
-        
+        status = "[green]OK[/green]" if policy_path.exists() else "[red]NO[/red]"
+        test_status = "[green]OK[/green]" if test_path.exists() else "[red]NO[/red]"
+
         console.print(f"  {status} [cyan]{name}[/cyan]")
         console.print(f"     {info['description']}")
         console.print(f"     Policy: {info['policy']} | Tests: {test_status} {info['tests']}")
@@ -466,3 +479,4 @@ Examples:
 
 if __name__ == "__main__":
     sys.exit(main())
+
