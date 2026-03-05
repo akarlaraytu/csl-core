@@ -10,7 +10,7 @@ description = "CSL-Core: Deterministic Safety Layer for Probabilistic AI Systems
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
-keywords = ["ai-safety", "formal-verification", "langchain", "policy-engine", "z3"]
+keywords = ["ai-safety", "formal-verification", "langchain", "llamaindex", "policy-engine", "z3"]
 
 authors = [
     {name = "Aytug Akarlar", email = "akarlaraytu@gmail.com"},
@@ -42,6 +42,10 @@ langchain = [
     "langchain-core>=0.1.0",
     "pydantic>=2.0.0",
 ]
+llamaindex = [
+    "llama-index-core>=0.10.0",
+    "pydantic>=2.0.0",
+]
 dev = [
     "pytest>=7.0",
     "pytest-cov",
@@ -49,6 +53,7 @@ dev = [
     "black",
     "mypy",
     "langchain-core>=0.1.0",
+    "llama-index-core>=0.10.0",
     "pydantic>=2.0.0",
 ]
 
