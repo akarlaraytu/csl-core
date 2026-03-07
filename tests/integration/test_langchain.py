@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import pytest
 from chimera_core.runtime import ChimeraGuard, ChimeraError
-from chimera_core.plugins.langchain import ChimeraRunnableGate, wrap_tool
 
 # --- 1. Bağımlılık Kontrolü ---
 def _has_langchain_core() -> bool:
@@ -24,6 +23,8 @@ def test_lcel_runnable_gate_pass_through(compiled_agent_tool_guard):
     """
     Test ChimeraRunnableGate using the shared compiled policy from conftest.py
     """
+    from chimera_core.plugins.langchain import ChimeraRunnableGate
+
     guard = ChimeraGuard(compiled_agent_tool_guard)
 
     gate = ChimeraRunnableGate(
@@ -50,6 +51,7 @@ def test_tool_wrapper_blocks_external_pii(compiled_agent_tool_guard):
     """
     Test Tool Wrapper enforcing DLP rules using the shared policy.
     """
+    from chimera_core.plugins.langchain import wrap_tool
     from langchain_core.tools import BaseTool
     from pydantic import BaseModel, Field
 
@@ -97,4 +99,5 @@ def test_tool_wrapper_blocks_external_pii(compiled_agent_tool_guard):
             "user_role": "ADMIN"
         })
     
-    assert "no_external_email_with_pii" in str(excinfo.value) or "Violation" in str(excinfo.value)
+    msg = str(excinfo.value).lower()
+    assert ("no_external_email_with_pii" in msg) or ("violation" in msg)
