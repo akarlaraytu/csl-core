@@ -8,7 +8,7 @@
 
 ## ❤️ Our Contributors!
 
-[![Contributors](https://contrib.rocks/image?repo=Chimera-Protocol/csl-core&v=1)](https://github.com/Chimera-Protocol/csl-core/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Chimera-Protocol/csl-core&v=2)](https://github.com/Chimera-Protocol/csl-core/graphs/contributors)
 
 **CSL-Core** (Chimera Specification Language) is a deterministic safety layer for AI agents. Write rules in `.csl` files, verify them mathematically with Z3, enforce them at runtime — outside the model. The LLM never sees the rules. It simply cannot violate them.
 
