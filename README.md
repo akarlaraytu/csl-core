@@ -90,6 +90,10 @@ print(result.allowed)  # False
 
 ---
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/chimera-protocol-csl-core).
+
 ## Benchmark: Adversarial Attack Resistance
 
 We tested prompt-based safety rules vs CSL-Core enforcement across 4 frontier LLMs with 22 adversarial attacks and 15 legitimate operations:
