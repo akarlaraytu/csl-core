@@ -68,4 +68,5 @@ dmypy.json
 # Logs and Debugging
 *.log
 z3_trace.log
-*.prof
+*.prof.claude/
+.claire/
