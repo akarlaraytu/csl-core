@@ -1,7 +1,7 @@
 # CSL-Core
 
 [![PyPI version](https://img.shields.io/pypi/v/csl-core?color=blue)](https://pypi.org/project/csl-core/)
-[![PyPI Downloads](https://static.pepy.tech/personalized-badge/csl-core?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/csl-core)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/csl-core?period=total&units=abbreviation&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/csl-core)
 [![Python](https://img.shields.io/pypi/pyversions/csl-core.svg)](https://pypi.org/project/csl-core/)
 [![License](https://img.shields.io/pypi/l/csl-core.svg)](LICENSE)
 [![Z3 Verified](https://img.shields.io/badge/Z3-Formally%20Verified-purple.svg)](https://github.com/Z3Prover/z3)
@@ -9,7 +9,7 @@
 
 ## ❤️ Our Contributors!
 
-[![Contributors](https://contrib.rocks/image?repo=Chimera-Protocol/csl-core&v=4)](https://github.com/Chimera-Protocol/csl-core/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Chimera-Protocol/csl-core&v=5)](https://github.com/Chimera-Protocol/csl-core/graphs/contributors)
 
 **CSL-Core** (Chimera Specification Language) is a deterministic safety layer for AI agents. Write rules in `.csl` files, verify them mathematically with Z3, enforce them at runtime — outside the model. The LLM never sees the rules. It simply cannot violate them.
 
