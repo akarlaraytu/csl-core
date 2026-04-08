@@ -9,7 +9,7 @@
 
 ## ❤️ Our Contributors!
 
-[![Contributors](https://contrib.rocks/image?repo=Chimera-Protocol/csl-core&v=2)](https://github.com/Chimera-Protocol/csl-core/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Chimera-Protocol/csl-core&v=4)](https://github.com/Chimera-Protocol/csl-core/graphs/contributors)
 
 **CSL-Core** (Chimera Specification Language) is a deterministic safety layer for AI agents. Write rules in `.csl` files, verify them mathematically with Z3, enforce them at runtime — outside the model. The LLM never sees the rules. It simply cannot violate them.
 
@@ -255,6 +255,7 @@ Or run standalone:
 cslcore formal policy.csl              # real TLC (Java required, JAR auto-downloaded)
 cslcore formal policy.csl --mock       # Python BFS fallback (no Java needed)
 cslcore formal policy.csl --timeout 120
+cslcore formal policy.csl --export-tla ./specs/   # save .tla + .cfg for TLA+ Toolbox
 ```
 
 > **No Java?** CSL-Core falls back to a Python BFS model checker automatically. The banner clearly labels which engine ran. JAR is auto-downloaded on first use (~4MB from the official TLA+ GitHub release).

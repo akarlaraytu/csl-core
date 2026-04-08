@@ -308,6 +308,29 @@ def cmd_formal(args: argparse.Namespace) -> int:
         ))
     console.print()
 
+    # ── Export TLA+ spec (if requested) ──────────────────────────────────────
+    if getattr(args, "export_tla", None):
+        from pathlib import Path as _ExportPath
+        from .engines.tla_engine.tla_spec_builder import TLASpecBuilder
+        out_dir = _ExportPath(args.export_tla).expanduser().resolve()
+        try:
+            out_dir.mkdir(parents=True, exist_ok=True)
+            spec = TLASpecBuilder().build(constitution)
+            tla_file, cfg_file = spec.write(out_dir)
+            console.print(Panel(
+                f"[bold green]TLA⁺ specification exported[/bold green]\n"
+                f"  • [cyan]{tla_file}[/cyan]\n"
+                f"  • [cyan]{cfg_file}[/cyan]\n\n"
+                f"[dim]Open these in the TLA⁺ Toolbox, or run TLC manually:[/dim]\n"
+                f"[dim]  java -jar tla2tools.jar -config {cfg_file.name} {tla_file.name}[/dim]",
+                border_style="green",
+                width=92,
+            ))
+            console.print()
+        except Exception as e:
+            _print_error("Export failed", _safe_to_str(e, 2000))
+            return 3
+
     # ── Run verifier ─────────────────────────────────────────────────────────
     verifier = TLAVerifier(
         animate=True,
@@ -672,6 +695,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--no-download",
         action="store_true",
         help="Do not auto-download tla2tools.jar if missing",
+    )
+    f.add_argument(
+        "--export-tla",
+        metavar="DIR",
+        help="Export the auto-generated .tla and .cfg files to DIR (TLA+ Toolbox compatible)",
     )
     f.set_defaults(func=cmd_formal)
 
